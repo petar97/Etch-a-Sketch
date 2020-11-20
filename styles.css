@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 900px;
+    max-width: 100%;
+    height: 900px;
+    max-height: 100vh;
+    display: grid;
+    margin: auto;
+}
+
+.btn {
+    display: block;
+    margin: auto;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.gridDiv {
+    border: 1px solid black;
+    transition: all ease .25s;
+}
+
+.colored {
+    background-color: brown;
+}

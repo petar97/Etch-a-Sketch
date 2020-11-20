@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch-a-Sketch</title>
+</head>
+<body>
+    <button class="btn">Reset the Grid</button>
+    <main class="container">
+
+    </main>
+
+    <script>
+        const container = document.querySelector('.container');
+        const button = document.querySelector('.btn');
+        let gridDivs;
+        
+        createGrid(16);
+        
+        button.addEventListener('click', resetGrid);
+
+        function createGrid(gridSize) {
+            container.style.cssText = `grid-template-columns: repeat(${gridSize}, 1fr)`;
+
+            console.log(container.style.gridTemplateColums);
+
+            for (let i = 0; i < gridSize * gridSize; i++) {
+                let div = document.createElement('div');
+                div.classList.add('gridDiv');
+                container.appendChild(div);
+            }
+            gridDivs = Array.from(document.querySelectorAll('.gridDiv'));
+
+            gridDivs.forEach(div => {
+            div.addEventListener('mouseenter', (event) => {
+                event.target.style.cssText = 
+                'background-color: #' + 
+                Math.floor(Math.random()*16777215).toString(16);
+            });
+        });
+        }
+
+        function clearGrid() {
+            gridDivs.forEach(div => {
+                div.remove();
+            });
+        }
+
+        function resetGrid() {
+            gridSize = prompt('Enter New Grid Size', '');
+            if (gridSize !== null && 
+                gridSize !== '' && 
+                gridSize < 100) {
+                clearGrid();
+                createGrid(gridSize);
+                gridDivs.forEach(div => {
+                    div.style.cssText = 'background-color: #fff';
+                });
+            }
+        }
+    </script>
+</body>
+</html>
